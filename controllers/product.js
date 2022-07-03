@@ -6,12 +6,16 @@ exports.test = function (req, res) {
 };
 
 exports.product_create = function (req, res) {
+
+    console.log("JJJJJJJJJJJJJJJJJJJJJJJJJJJ Product save");
     var product = new Product(
         {
             name: req.body.name,
             price: req.body.price
         }
     );
+
+    console.log(product);
 
     product.save(function (err) {
         if (err) {
