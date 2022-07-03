@@ -2,23 +2,24 @@ const {ObjectID} = require('mongodb');
 
 
 
-const {User} = require('./../models/product');
+const {Product} = require('./../models/product');
 
-const userOneID = new ObjectID();
-const userTwoID = new ObjectID();
-const users = [{
-  name: "person1@gmail.com",
-  price: "12345678"
+
+const products = [{
+  name: "Anish",
+  price: 888888888
 }, {
-  name: "person2@gmail.com",
-  price: "12345678"
+  name: "Anvi",
+  price: 999999999
 }]
 
-var addDummyUsers = (done) => {
-return 10;
+var addDummyProductItems = (done) => {
+  Product.deleteMany({}).then(() => {
+    return Product.insertMany(products);
+  }).then(() => done());
 };
 
 module.exports = {
-  users,
-  addDummyUsers
+  products,
+  addDummyProductItems
 }

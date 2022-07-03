@@ -5,7 +5,7 @@ exports.test = function (req, res) {
     res.send('Greetings from the Test controller!');
 };
 
-exports.product_create = function (req, res) {
+exports.product_create = async function (req, res) {
 
     console.log("JJJJJJJJJJJJJJJJJJJJJJJJJJJ Product save");
     var product = new Product(
@@ -17,11 +17,18 @@ exports.product_create = function (req, res) {
 
     console.log(product);
 
-    product.save(function (err) {
+  await  product.save(function (err) {
         if (err) {
             return next(err);
         }
         res.send('Product Created successfully')
+    })
+};
+
+exports.product_getall = function (req, res) {
+    Product.find(req.params.id, function (err, product) {
+        if (err) return next(err);
+        res.send(product);
     })
 };
 
