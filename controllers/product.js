@@ -22,7 +22,9 @@ exports.product_create = async function (req, res) {
         if (err) {
             return next(err);
         }
-        res.send('Product Created successfully')
+      //  res.send('Product Created successfully')
+       // res.json({message: "Book successfully added!", book });
+        res.send({message: "Product successfully added!", product });
     })
 };
 
@@ -49,8 +51,8 @@ exports.product_getall = async (req, res) => {
 exports.product_details = async (req, res) => {
     console.log(req.params);
     console.log("This is get all to do from Controller single product");
-    await Product.findById(req.params.id).then((products) => {
-      res.send({products});
+    await Product.findById(req.params.id).then((product) => {
+      res.send({product});
     }).catch((err) => {
       res.status(400).send(err);
     })
@@ -66,6 +68,6 @@ exports.product_update = function (req, res) {
 exports.product_delete = function (req, res) {
     Product.findByIdAndRemove(req.params.id, function (err) {
         if (err) return next(err);
-        res.send('Deleted successfully!');
+        res.send({message: "Product successfully deleted!" });
     })
 };
